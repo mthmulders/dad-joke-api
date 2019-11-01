@@ -1,0 +1,31 @@
+version: 2
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "14 3 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - checkout
+      - run:
+          name: Build software
+          command: |
+            pushd get-joke
+            go build
+            popd
+
