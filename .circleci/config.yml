@@ -35,4 +35,4 @@ jobs:
       - run:
           name: Login to Oracle Cloud Infrastructure Registry
           command: |
-            docker login fra.ocir.io -u frwqejk9in9h/oracleidentitycloudservice/circleci -p ${OCIR_TOKEN}
+            docker login fra.ocir.io -u frwqejk9in9h/circleci -p ${OCIR_TOKEN}
