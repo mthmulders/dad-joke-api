@@ -1,2 +1,4 @@
 infra/env.sh
 infra/*tfstate
+
+get-joke/func
