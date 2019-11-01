@@ -23,9 +23,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Fn CLI
+          command: curl -LSs https://raw.githubusercontent.com/fnproject/cli/master/install | sh
+      - run:
           name: Build software
           command: |
             pushd get-joke
-            go build
+            fn build
             popd
 
