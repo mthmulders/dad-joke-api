@@ -22,6 +22,7 @@ jobs:
       - image: circleci/golang:1.12
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Install Fn CLI
           command: curl -LSs https://raw.githubusercontent.com/fnproject/cli/master/install | sh
