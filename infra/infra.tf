@@ -77,3 +77,19 @@ resource "oci_functions_function" "get-joke-function" {
   image          = "fra.ocir.io/frwqejk9in9h/dad-jokes/get-joke:0.0.1"
   memory_in_mbs  = "64"
 }
+
+resource "oci_identity_group" "ocir-pushers" {
+    #Required
+    compartment_id = "${var.compartment_ocid}"
+    description = "Oracle Cloud Infrastructure Registry push users"
+    name = "ocir-pushers"
+}
+
+
+resource "oci_identity_policy" "allow-group-ocir-pushers-to-use-repos" {
+    #Required
+    compartment_id = "${var.compartment_ocid}"
+    description = "Allow group ocir-pushers to use repos"
+    name = "allow-group-ocir-pushers-to-use-repos"
+    statements = "Allow group ocir-pushers to use repos in frwqejk9in9h"
+}
