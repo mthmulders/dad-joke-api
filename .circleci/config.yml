@@ -36,3 +36,9 @@ jobs:
           name: Login to Oracle Cloud Infrastructure Registry
           command: |
             docker login fra.ocir.io -u frwqejk9in9h/circleci -p ${OCIR_TOKEN}
+      - run:
+          name: Publish Get Joke function
+          command: |
+            pushd get-joke
+            fn --registry fra.ocir.io/frwqejk9in9h/dad-jokes push
+            popd
