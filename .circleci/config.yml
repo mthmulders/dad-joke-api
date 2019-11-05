@@ -38,6 +38,7 @@ jobs:
       - run:
           name: Prepare Oracle Cloud CLI
           command: |
+            mkdir ~/.oci
             cat > ~/.oci/config << EOF
             [circleci]
             user=${OCI_USER_OCID}
