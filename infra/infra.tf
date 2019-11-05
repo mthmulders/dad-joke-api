@@ -70,14 +70,14 @@ resource "oci_functions_application" "dad-jokes" {
     subnet_ids = ["${oci_core_subnet.dad-jokes.id}"]
 }
 
-# Finally, configure the Function
-resource "oci_functions_function" "get-joke" {
-  #Required
-  application_id = "${oci_functions_application.dad-jokes.id}"
-  display_name   = "Get-Joke"
-  image          = "fra.ocir.io/frwqejk9in9h/dad-jokes/get-joke:0.0.1"
-  memory_in_mbs  = "128"
-}
+# # Finally, configure the Function
+# resource "oci_functions_function" "get-joke" {
+#   #Required
+#   application_id = "${oci_functions_application.dad-jokes.id}"
+#   display_name   = "Get-Joke"
+#   image          = "fra.ocir.io/frwqejk9in9h/dad-jokes/get-joke:0.0.1"
+#   memory_in_mbs  = "128"
+# }
 
 resource "oci_identity_group" "ocir-pushers" {
     #Required
