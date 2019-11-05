@@ -42,6 +42,7 @@ jobs:
             fn create context awesomesauce-root --provider oracle
             fn use context awesomesauce-root
             fn update context oracle.compartment-id ${COMPARTMENT_OCID}
+            fn update context oracle.tenancy-id ${OCI_TENANCY_ID}
             fn update context api-url https://functions.eu-frankfurt-1.oraclecloud.com
             fn update context registry fra.ocir.io/${OCIR_REPOSITORY}/dad-jokes
       - run:
