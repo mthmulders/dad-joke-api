@@ -39,14 +39,14 @@ jobs:
           name: Prepare Oracle Cloud CLI
           command: |
             cat > ~/.oci/config << EOF
-[circleci]
-user=${OCI_USER_OCID}
-fingerprint=${OCI_KEY_FINGERPRINT}
-key_file=~/oracle.pem
-tenancy=${OCI_TENANCY_ID}
-region=fra
-pass_phrase=${OCI_PRIVATE_KEY_PASSWORD}
-EOF
+            [circleci]
+            user=${OCI_USER_OCID}
+            fingerprint=${OCI_KEY_FINGERPRINT}
+            key_file=~/oracle.pem
+            tenancy=${OCI_TENANCY_ID}
+            region=fra
+            pass_phrase=${OCI_PRIVATE_KEY_PASSWORD}
+            EOF
       - run:
           name: Login to Oracle Cloud Infrastructure Registry
           command: |
