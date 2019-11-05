@@ -48,6 +48,4 @@ jobs:
       - run:
           name: Publish Get Joke function
           command: |
-            pushd get-joke
-            fn deploy --app Dad-Jokes
-            popd
+            fn deploy --app Dad-Jokes get-joke
