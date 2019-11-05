@@ -34,7 +34,7 @@ jobs:
             popd
       - run:
           name: Store Oracle Cloud CLI private key
-          command: echo ${OCI_PRIVATE_KEY} > oracle.pem
+          command: echo ${OCI_PRIVATE_KEY} > ~/oracle.pem
       - run:
           name: Prepare Oracle Cloud CLI
           command: |
