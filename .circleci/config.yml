@@ -45,7 +45,7 @@ jobs:
             fingerprint=${OCI_KEY_FINGERPRINT}
             key_file=~/oracle.pem
             tenancy=${OCI_TENANCY_ID}
-            region=fra
+            region=eu-frankfurt-1
             pass_phrase=${OCI_PRIVATE_KEY_PASSWORD}
             EOF
       - run:
