@@ -33,6 +33,36 @@ jobs:
             fn build
             popd
       - run:
+          name: Store Oracle Cloud CLI private key
+          command: echo ${OCI_PRIVATE_KEY} | base64 --decode > ~/oracle.pem
+      - run:
+          name: Prepare Oracle Cloud CLI
+          command: |
+            mkdir ~/.oci
+            cat > ~/.oci/config << EOF
+            [circleci]
+            user=${OCI_USER_OCID}
+            fingerprint=${OCI_KEY_FINGERPRINT}
+            key_file=~/oracle.pem
+            tenancy=${OCI_TENANCY_ID}
+            region=eu-frankfurt-1
+            pass_phrase=${OCI_PRIVATE_KEY_PASSWORD}
+            EOF
+      - run:
           name: Login to Oracle Cloud Infrastructure Registry
           command: |
-            docker login fra.ocir.io -u frwqejk9in9h/circleci -p ${OCIR_TOKEN}
+            docker login fra.ocir.io -u ${OCIR_REPOSITORY}/circleci -p ${OCIR_TOKEN}
+      - run:
+          name: Publish functions
+          command: |
+            fn create context awesomesauce --provider oracle
+            fn use context awesomesauce
+            fn update context oracle.profile circleci
+            fn update context oracle.compartment-id ${COMPARTMENT_OCID}
+            fn update context oracle.tenancy-id ${OCI_TENANCY_ID}
+            fn update context api-url https://functions.eu-frankfurt-1.oraclecloud.com
+            fn update context registry fra.ocir.io/${OCIR_REPOSITORY}/dad-jokes
+            fn deploy --app Dad-Jokes --no-bump get-joke
+      - run:
+          name: Cleanup Oracle Cloud CLI private key
+          command: rm ~/oracle.pem
