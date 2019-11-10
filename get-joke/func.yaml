@@ -1,5 +1,5 @@
 schema_version: 20180708
-name: Get-Joke
-version: 0.0.3
+name: get-joke
+version: 0.0.4
 runtime: go
 entrypoint: ./func
