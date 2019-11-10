@@ -96,7 +96,7 @@ resource "oci_identity_policy" "create-required-policies" {
     description = "Grant necessary rights to dad-jokes group"
     name = "grant-dad-jokes-group-rights"
     statements = [
-      "Allow group ${oci_identity_group.dad-jokes.name} to use repos in tenancy",
+      "Allow group ${oci_identity_group.dad-jokes.name} to manage repos in tenancy",
       "Allow group ${oci_identity_group.dad-jokes.name} to read metrics in compartment ${data.oci_identity_compartment.project-compartment.name}",
       "Allow group ${oci_identity_group.dad-jokes.name} to use virtual-network-family in compartment ${data.oci_identity_compartment.project-compartment.name}",
       "Allow group ${oci_identity_group.dad-jokes.name} to manage all-resources in compartment ${data.oci_identity_compartment.project-compartment.name}",
