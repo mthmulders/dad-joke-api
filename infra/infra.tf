@@ -14,17 +14,17 @@ data "oci_identity_availability_domains" "my-availability-domain" {
 
 # Fetch compartments
 data "oci_identity_compartment" "project-compartment" {
-    id = "${var.project_compartment_ocid}"
+  id = "${var.project_compartment_ocid}"
 }
 
 # Configure the Oracle Cloud Infrastructure provider
 provider "oci" {
-    tenancy_ocid = "${var.tenancy_ocid}"
-    user_ocid = "${var.user_ocid}"
-    fingerprint = "${var.fingerprint}"
-    private_key_path = "${var.private_key_path}"
-    private_key_password = "${var.private_key_password}"
-    region = "${var.region}"
+  tenancy_ocid         = "${var.tenancy_ocid}"
+  user_ocid            = "${var.user_ocid}"
+  fingerprint          = "${var.fingerprint}"
+  private_key_path     = "${var.private_key_path}"
+  private_key_password = "${var.private_key_password}"
+  region               = "${var.region}"
 }
 
 # Configure the Virtual Cloud Network
@@ -45,7 +45,7 @@ resource "oci_core_internet_gateway" "dad-jokes" {
 # Configure the Route Table
 resource "oci_core_route_table" "dad-jokes" {
   compartment_id = "${var.project_compartment_ocid}"
-  display_name = "Dad Jokes"
+  display_name   = "Dad Jokes"
 
   route_rules {
     cidr_block        = "0.0.0.0/0"
@@ -71,9 +71,9 @@ resource "oci_core_subnet" "dad-jokes" {
 
 # Configure the Application
 resource "oci_functions_application" "dad-jokes" {
-    compartment_id = "${var.project_compartment_ocid}"
-    display_name = "Dad-Jokes"
-    subnet_ids = ["${oci_core_subnet.dad-jokes.id}"]
+  compartment_id = "${var.project_compartment_ocid}"
+  display_name   = "Dad-Jokes"
+  subnet_ids     = ["${oci_core_subnet.dad-jokes.id}"]
 }
 
 # Finally, configure the Function
@@ -86,23 +86,23 @@ resource "oci_functions_function" "get-joke" {
 
 # Describe the group of users that can work with the function 
 resource "oci_identity_group" "dad-jokes" {
-    compartment_id = "${var.compartment_ocid}"
-    description = "Dad Jokes users"
-    name = "dad-jokes"
+  compartment_id = "${var.compartment_ocid}"
+  description    = "Dad Jokes users"
+  name           = "dad-jokes"
 }
 
 resource "oci_identity_policy" "create-required-policies" {
-    compartment_id = "${var.compartment_ocid}"
-    description = "Grant necessary rights to dad-jokes group"
-    name = "grant-dad-jokes-group-rights"
-    statements = [
-      "Allow group ${oci_identity_group.dad-jokes.name} to manage repos in tenancy",
-      "Allow group ${oci_identity_group.dad-jokes.name} to read metrics in compartment ${data.oci_identity_compartment.project-compartment.name}",
-      "Allow group ${oci_identity_group.dad-jokes.name} to use virtual-network-family in compartment ${data.oci_identity_compartment.project-compartment.name}",
-      "Allow group ${oci_identity_group.dad-jokes.name} to manage all-resources in compartment ${data.oci_identity_compartment.project-compartment.name}",
-      "Allow service FaaS to use virtual-network-family in compartment ${data.oci_identity_compartment.project-compartment.name}",
-      "Allow service FaaS to read repos in tenancy"
-    ]
+  compartment_id = "${var.compartment_ocid}"
+  description    = "Grant necessary rights to dad-jokes group"
+  name           = "grant-dad-jokes-group-rights"
+  statements = [
+    "Allow group ${oci_identity_group.dad-jokes.name} to manage repos in tenancy",
+    "Allow group ${oci_identity_group.dad-jokes.name} to read metrics in compartment ${data.oci_identity_compartment.project-compartment.name}",
+    "Allow group ${oci_identity_group.dad-jokes.name} to use virtual-network-family in compartment ${data.oci_identity_compartment.project-compartment.name}",
+    "Allow group ${oci_identity_group.dad-jokes.name} to manage all-resources in compartment ${data.oci_identity_compartment.project-compartment.name}",
+    "Allow service FaaS to use virtual-network-family in compartment ${data.oci_identity_compartment.project-compartment.name}",
+    "Allow service FaaS to read repos in tenancy"
+  ]
 }
 
 output "Get-Jokes-Endpoint" {
