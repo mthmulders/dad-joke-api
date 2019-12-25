@@ -1,5 +1,6 @@
 infra/env.sh
 infra/*tfstate*
 infra/.terraform
+infra/terraform.tfvars
 
 get-joke/func
