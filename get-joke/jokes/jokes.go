@@ -17,7 +17,7 @@ func init() {
 
 	jokes[0] = "My Xmas sweater had a lot of static electricity. The store gave me a new one, free of charge."
 	jokes[1] = "There was a man that couldn't see that well, so he fell into it"
-	jokes[2] = "How does Bono spell \"Color?\" With or without u?"
+	jokes[2] = "How does Bono spell \"Color\"? With or without u?"
 	jokes[3] = "A man sued an airline after it lost his luggage. Sadly, he lost his case."
 	jokes[4] = "What's the fastest growing city on earth? The capital of Ireland, it's Dublin every day"
 	jokes[5] = "My friend didn't understand cloning. That makes two of us"
