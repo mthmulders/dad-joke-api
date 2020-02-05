@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var jokes [12]string
+var jokes [13]string
 var seed int64
 
 func init() {
@@ -27,6 +27,7 @@ func init() {
 	jokes[9] = "Why did the hipster burn his mouth? He drank the coffee before it was cool."
 	jokes[10] = "Why do programmers always mix up Christmas and Halloween? Because Dec 25 is Oct 31."
 	jokes[11] = "If I had 50 cents for every time I failed a math test, I'd have € 7.20 right now."
+	jokes[12] = "Scientists studied the earth's rotation. After 24 hours, they called it a day."
 }
 
 // GetRandomJoke returns a pseudo-random joke from the collection.
